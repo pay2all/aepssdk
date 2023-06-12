@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <LinearLayout android:orientation="vertical"
+                    android:background="@drawable/login_shape_bk"
+                    android:layout_weight="3" style="@style/parent">
+                    <ImageView android:background="@drawable/ic_login_bk"
+                        android:contentDescription="Home background" style="@style/parent"/>
+                </LinearLayout>
+            </LinearLayout>
+            <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="10dp">
+                <LinearLayout android:orientation="vertical"
+                    android:background="@color/white"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <EditText
+                            android:id="@+id/edittext_customer_mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Mobile Number"
+                            android:maxLines="1"
+                            android:maxLength="10"
+                            android:inputType="number"
+                            android:enabled="false"
+                            android:paddingLeft="5dp"
+                            android:drawableRight="@drawable/verified_icon"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/green"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        >
+                        <EditText android:id="@+id/edittext_customer_aadhaar_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Aadhaar Number"
+                            android:maxLines="1"
+                            android:maxLength="12"
+                            android:inputType="number"
+                            android:enabled="false"
+                            android:paddingLeft="5dp"
+                            android:drawableRight="@drawable/verified_icon"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/green"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        >
+                        <EditText
+                            android:id="@+id/edittext_pan_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="PAN Number"
+                            android:maxLines="1"
+                            android:maxLength="12"
+                            android:inputType="number"
+                            android:enabled="false"
+                            android:paddingLeft="5dp"
+                            android:drawableRight="@drawable/verified_icon"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/green"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:id="@+id/ll_select_device"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Biometric Device"/>
+                        <TextView android:textSize="18sp"
+                            android:id="@+id/textview_select_device"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:hint="Select Device"/>
+                        <View android:background="@color/colorAccent"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_margin="5dp"/>
+                    </LinearLayout>
+                    <LinearLayout android:orientation="vertical"
+                        android:id="@+id/ll_fingerprint"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+                        <ImageView android:layout_gravity="center"
+                            android:id="@+id/imageview_finger_print"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/fingerprint_icon"/>
+                        <TextView android:layout_gravity="center"
+                            android:id="@+id/textview_capture_quality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"/>
+                    </LinearLayout>
+                    <LinearLayout android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:weightSum="2">
+                        <Button android:textColor="@color/white"
+                            android:id="@+id/button_re_capture"
+                            android:background="@drawable/button_shape"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Re-Capture"
+                            android:layout_weight="1"/>
+                        <Button android:textColor="@color/white"
+                            android:id="@+id/button_submit"
+                            android:background="@drawable/button_shape"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/capture_fingerprint"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <EditText android:id="@+id/ed_response"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

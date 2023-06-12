@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/green">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            android:orientation="vertical">
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/icon_shape"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_icon"
+                        android:layout_width="150dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/icici_logo"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageview_share"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_baseline_print_24"
+                        app:tint="@color/black" />
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textview_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cash Withdrawal Successfully"
+                        android:gravity="center_horizontal"
+                        android:textColor="#424242"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_status"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/success"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bank Name"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/textview_bank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+                </View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Outlet Name"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_outlet_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+
+                </View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Outlet Mobile"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_outlet_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+
+                </View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Outlet Location"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_outlet_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+
+                </View>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Customer Number"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/textview_customer_mob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+
+                </View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Aadhar Number"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/textview_aadhaar_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+
+                </View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="UTR Number"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/textview_utr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+
+                </View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Order ID"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/textview_order_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+
+                </View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Date Time"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="23-06-2021 2:30 PM"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+
+                </View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Txn Amount"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/textview_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black">
+
+                </View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Available Balance"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/textview_available_balance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Note  :"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:layout_toRightOf="@+id/tv_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="5dp"
+                        android:text="I hereby confirm that Direct Benefits Transfer (DBT)/ Subsidies granted by the Government is received by me into the bank Account i carry out transctions through Business Correspondent bank for withdrawal of money from my accounts also for enquiry of balance under my account. I am submitting my Aadhar detail's voluntarily to you for authentication purpose using my Aadhar number/biometrics with UIDAI for the aforesaid purposes through AEPS."
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

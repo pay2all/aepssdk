@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:background="@drawable/item_shape" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:weightSum="1">
+        <TextView android:id="@+id/textview_amount" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="2.5dp" android:layout_weight="0.25" android:textAlignment="center"/>
+        <View android:background="@color/grey_light" android:layout_width="0.5dp" android:layout_height="match_parent"/>
+        <TextView android:id="@+id/textview_type" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="2.5dp" android:text="Cr" android:layout_weight="0.3" android:textAllCaps="true" android:textAlignment="center"/>
+        <View android:background="@color/grey_light" android:layout_width="0.5dp" android:layout_height="match_parent"/>
+        <TextView android:id="@+id/textview_date" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="2.5dp" android:text="28648764" android:layout_weight="0.25" android:textAlignment="center"/>
+        <View android:background="@color/grey_light" android:layout_width="0.5dp" android:layout_height="match_parent"/>
+        <TextView android:id="@+id/textview_maration" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="2.5dp" android:layout_weight="0.2" android:textAllCaps="true" android:textAlignment="textEnd"/>
+    </LinearLayout>
+</LinearLayout>

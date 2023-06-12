@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Pay2allAEPS</string>
+
+
+    <string name="no_enternet_connection">No Internet Connection</string>
+
+    <string name="sjgcjsgfjhdgfh">Y2lwaGVyb3V0bGV0c2tleQ==</string>
+
+    <string name="capture_fingerprint">Capture Fingerprint</string>
+    <string name="proceed_now">Proceed Now</string>
+
+    <string name="rs">\u20B9</string>
+</resources>
