@@ -661,6 +661,9 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
         if (status.equals("1")||status.equalsIgnoreCase("true"))
         {
             textview_message.setText(message);
+            
+            imageview_messase_image.setImageResource(R.drawable.success);
+            
         }
         else if (status.equalsIgnoreCase("false")||status.equals("2"))
         {
