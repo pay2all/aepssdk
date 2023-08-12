@@ -112,6 +112,9 @@
             android:exported="true"
             />
 
+        <activity android:name=".AgentVerifyDetail.VerifyAgent"
+            android:label="2 Factor Authentication"
+            />
 
     </application>
 
