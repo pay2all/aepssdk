@@ -64,6 +64,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.InvalidParameterSpecException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -71,6 +72,11 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class VerifyAgent extends AppCompatActivity implements LocationListener {
 
@@ -253,7 +259,8 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
                                     Log.e("sending","data "+jsonObject);
                                     String data = mEncodByteToStringBase64(UTLsData.encryptMsg(jsonObject.toString(), secretKey));
 
-                                    mGetOrderId(data);
+                                    mOkkHttps(data);
+//                                    mGetOrderId(data);
                                 } catch (NoSuchAlgorithmException e) {
                                     e.printStackTrace();
                                 } catch (NoSuchPaddingException e) {
@@ -449,6 +456,97 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
     }
 
 
+    protected void mOkkHttps(String json_data)
+    {
+        class DatNewSubmit extends AsyncTask<String, String,String>
+        {
+
+            public void onPreExecute() {
+                super.onPreExecute();
+
+                dialog = new ProgressDialog(VerifyAgent.this);
+                dialog.setMessage("Please wait...");
+                dialog.show();
+                dialog.setCancelable(false);
+            }
+
+            @Override
+            protected String doInBackground(String... strings) {
+
+                String response_data=null;
+                try {
+                    OkHttpClient client = new OkHttpClient().newBuilder()
+
+                            .connectTimeout(10, TimeUnit.SECONDS)
+                            .writeTimeout(10, TimeUnit.SECONDS)
+                            .readTimeout(30, TimeUnit.SECONDS)
+
+                            .build();
+
+                    RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+//                            .setType(Objects.requireNonNull(mediaType))
+
+                            .addFormDataPart("json_data",json_data)
+                            .addFormDataPart("biometric_data",biometricdata)
+                            .build();
+                    Request request = new Request.Builder()
+                            .url(dbHelper.mBaseURL()+"v1/outletapi")
+                            .method("POST", body)
+                            .addHeader("Content-Type","application/json; charset=utf-8")
+                            .addHeader("Accept","application/json")
+                            .build();
+                    Response response = client.newCall(request).execute();
+
+                    response_data= response.body().string();
+
+                    Log.e("respon","respos "+response.message());
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                    response_data=e.getMessage();
+                }
+
+                return response_data;
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                dialog.dismiss();
+                Log.e("response","data "+result);
+
+                if (!result.equals(""))
+                {
+//                    Intent intent=new Intent(VerifyAgent.this, Receipt.class);
+//                    intent.putExtra("data",result);
+//                    startActivity(intent);
+//                    finish();
+//                    Toast.makeText(VerifyAgent.this, result, Toast.LENGTH_SHORT).show();
+
+                    String status="",message="";
+                    try {
+                        JSONObject jsonObject=new JSONObject(result);
+                        if (jsonObject.has("status_id"))
+                        {
+                            status=jsonObject.getString("status_id");
+                        }
+                        if (jsonObject.has("message"))
+                        {
+                            message=jsonObject.getString("message");
+                        }
+
+                        mShowStatus(status,message);
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        new DatNewSubmit().execute();
+    }
 
     public String mEncodByteToStringBase64(byte[] bArr) {
         return Base64.encodeToString(bArr, 0);
