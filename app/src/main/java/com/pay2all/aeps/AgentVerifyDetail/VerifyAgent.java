@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -134,16 +136,23 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
     RadioGroup radioGroup;
 
     ProgressDialog dialog;
+
+    String aadhaar="0";
     
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agent_verify);
-
         if (getSupportActionBar()!=null)
         {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        if (getIntent().hasExtra("aadhaar_verify"))
+        {
+            aadhaar=getIntent().getStringExtra("aadhaar_verify");
+        }
+
 
         radioGroup=findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener((radioGroup, i) -> {
@@ -155,6 +164,15 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
                 provider_id="175";
             }
         });
+
+
+        if (aadhaar.equals("1"))
+        {
+            RadioButton rb_aadhaar= findViewById(R.id.rb_aadhaar);
+            rb_aadhaar.setChecked(true);
+            provider_id="175";
+        }
+
 
         dbHelper =new DBHelper(VerifyAgent.this);
 
@@ -780,6 +798,13 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
             public void onClick(View view) {
                 alert.dismiss();
                 if (status.equals("1")||status.equalsIgnoreCase("true")) {
+
+
+//                to send broadcast
+                    Intent intent = new Intent("agent_verification");
+                    intent.putExtra("status", status);
+                    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+
                     finish();
                 }
             }
@@ -924,8 +949,17 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
             lat=Latitude;
             log=Longitude;
 
-            TextView tv_lat_log=findViewById(R.id.tv_lat_log);
-            tv_lat_log.setText("Latitude : "+lat+", Longitude : "+log);
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    // Stuff that updates the UI
+                    TextView tv_lat_log=findViewById(R.id.tv_lat_log);
+                    tv_lat_log.setText("Latitude : "+lat+", Longitude : "+log);
+                }
+            });
+
 
         }
     };

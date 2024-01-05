@@ -251,6 +251,7 @@ public class DeviceScanFormate {
             Log.e("Precision Pid Options", tmpOptXml);
             return tmpOptXml;
         }
+
         catch (Exception ex) {
 //            this.reportData.append("Excep message: ");
 //            this.reportData.append(ex.getMessage());
@@ -262,5 +263,4 @@ public class DeviceScanFormate {
             return ex.getMessage();
         }
     }
-
 }

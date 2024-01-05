@@ -28,12 +28,12 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pay2all.aeps.AEPSICICI.BankLIst.BankListBottomSheet3DialogFragment;
 import com.pay2all.aeps.AEPSICICI.BankLIst.BankListItems;
+import com.pay2all.aeps.AgentVerificationBottomSheet3DialogFragment;
 import com.pay2all.aeps.Constants;
 import com.pay2all.aeps.DBHelper;
 import com.pay2all.aeps.DetectConnection;
 import com.pay2all.aeps.AEPSICICI.DevicesList.DeviceCardAdapter;
 import com.pay2all.aeps.AEPSICICI.DevicesList.DevicesItems;
-import com.pay2all.aeps.PaytmAEPS.ReceiptPaytm;
 import com.pay2all.aeps.R;
 import com.pay2all.aeps.UTLsData;
 
@@ -53,7 +53,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
@@ -72,8 +71,8 @@ public class Withdrawal extends AppCompatActivity {
     Button button_re_capture;
     Button button_submit;
 
-    /* renamed from: ci */
-    String f146ci;
+
+    String ci;
     DBHelper dbHelper;
     String device_package;
     ProgressDialog dialog;
@@ -105,7 +104,7 @@ public class Withdrawal extends AppCompatActivity {
         this.device_package = str;
         this.biometricdata = str;
         this.pidtype = str;
-        this.f146ci = str;
+        this.ci = str;
         this.token = str;
     }
 
@@ -113,7 +112,6 @@ public class Withdrawal extends AppCompatActivity {
 
     SharedPreferences.Editor editor;
 
-    /* access modifiers changed from: protected */
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView((int) R.layout.activity_mini_statement);
@@ -210,6 +208,8 @@ public class Withdrawal extends AppCompatActivity {
                 }
             }
         });
+
+        mOpenVerifyFragment();
     }
 
 
@@ -378,7 +378,7 @@ public class Withdrawal extends AppCompatActivity {
                     if (jSONObject.has(str5)) {
                         JSONObject jSONObject4 = jSONObject.getJSONObject(str5);
                         if (jSONObject4.has(str2)) {
-                            this.f146ci = jSONObject4.getString(str2);
+                            this.ci = jSONObject4.getString(str2);
                         }
                         if (jSONObject4.has(str11)) {
                             this.sessionKey = jSONObject4.getString(str11);
@@ -427,7 +427,7 @@ public class Withdrawal extends AppCompatActivity {
             sb.append("");
             jSONObject.put("biometric_data", (Object) sb.toString());
             jSONObject.put("PidDatatype", (Object) this.pidtype);
-            jSONObject.put("ci", (Object) this.f146ci);
+            jSONObject.put("ci", (Object) this.ci);
             jSONObject.put("client_id", (Object) Constants.mobile);
             try {
                 mCallService(mEncodByteToStringBase64(UTLsData.encryptMsg(jSONObject.toString(), this.secretKey)));
@@ -598,116 +598,16 @@ public class Withdrawal extends AppCompatActivity {
         intent.putExtra("service_name","Cash Withdrawal");
         startActivity(intent);
 
-
-//        boolean z;
-//        String str2 = str;
-//        String str3 = "order_id";
-//        String str4 = "utr";
-//        String str5 = "balance";
-//        String str6 = "message";
-//        String amount="";
-//        TextView textview_agent_id,textview_bc_name,textview_amount;
-//
-//
-//        String str7 = NotificationCompat.CATEGORY_STATUS;
-//        View inflate = ((LayoutInflater) getSystemService("layout_inflater")).inflate(R.layout.custom_alert_dialog_for_balance_enquiry, null);
-//        TextView textView = (TextView) inflate.findViewById(R.id.textview_available_balance);
-//        TextView textView2 = (TextView) inflate.findViewById(R.id.textview_utr);
-//        TextView textView3 = (TextView) inflate.findViewById(R.id.textview_order_id);
-//        TextView textView4 = (TextView) inflate.findViewById(R.id.textview_customer_mob);
-//        TextView textView5 = (TextView) inflate.findViewById(R.id.textview_aadhaar_number);
-//        TextView textView6 = (TextView) inflate.findViewById(R.id.textview_message);
-//        ImageView imageView = (ImageView) inflate.findViewById(R.id.imageview_close);
-//        textview_agent_id=inflate.findViewById(R.id.textview_agent_id);
-//        textview_bc_name=inflate.findViewById(R.id.textview_bc_name);
-//        textview_amount=inflate.findViewById(R.id.textview_amount);
-//        LinearLayout linearLayout = (LinearLayout) inflate.findViewById(R.id.ll_all_detail);
-//        TextView textView7 = (TextView) inflate.findViewById(R.id.textview_bank);
-//        ImageView imageView2 = (ImageView) inflate.findViewById(R.id.imageview_share);
-//        View view = inflate;
-//        String str8 = "";
-//        ImageView imageView3 = imageView2;
-//        TextView textView8 = textView5;
-//        if (!str2.equals(str8)) {
-//            linearLayout.setVisibility(0);
-//            textView6.setVisibility(8);
-//            try {
-//                JSONObject jSONObject = new JSONObject(str2);
-//                String string = jSONObject.has(str7) ? jSONObject.getString(str7) : str8;
-//                String string2 = jSONObject.has(str6) ? jSONObject.getString(str6) : str8;
-//                String string3 = jSONObject.has(str5) ? jSONObject.getString(str5) : str8;
-//                String string4 = jSONObject.has(str4) ? jSONObject.getString(str4) : str8;
-//                String string5 = jSONObject.has(str3) ? jSONObject.getString(str3) : str8;
-//                if (jSONObject.has("amount")){
-//                    amount=jSONObject.getString("amount");
-//
-//                }
-//                if (string.equals(str8)) {
-//                    imageView3.setVisibility(8);
-//                    textView6.setVisibility(0);
-//                    linearLayout.setVisibility(8);
-//                    textView6.setText(string2);
-//                } else if (string.equals("0")) {
-//                    this.action = "scan";
-//                    this.ll_fingerprint.setVisibility(8);
-//                    this.button_re_capture.setVisibility(8);
-//                    this.button_submit.setText(getResources().getString(R.string.capture_fingerprint));
-//                    this.bank_id = str8;
-//                    this.device_package = str8;
-//                    this.edittext_customer_mobile.setText(str8);
-//                    this.edittext_customer_aadhaar_number.setText(str8);
-//                    textView7.setText(this.textview_bank.getText().toString());
-//                    this.textview_bank.setText("Select Bank");
-//                    this.textview_select_device.setText("Select Device");
-//                    this.biometricdata = str8;
-//                    textview_amount.setText("Rs "+amount);
-//                    textview_agent_id.setText(Constants.outlet_id);
-//                    textview_bc_name.setText(Constants.name);
-//                    linearLayout.setVisibility(0);
-//                    textView6.setVisibility(8);
-//                    textView2.setText(string4);
-//                    textView3.setText(string5);
-//                    StringBuilder sb = new StringBuilder();
-//                    sb.append("Rs ");
-//                    sb.append(string3);
-//                    textView.setText(sb.toString());
-//                    textView4.setText(this.number);
-//                    StringBuilder sb2 = new StringBuilder();
-//                    sb2.append("XXXX-XXXX-");
-//                    sb2.append(this.aadhaar_number.substring(8, this.aadhaar_number.length()));
-//
-//                    textView8.setText(sb2.toString());
-//                } else {
-//                    imageView3.setVisibility(8);
-//                    textView6.setVisibility(0);
-//                    linearLayout.setVisibility(8);
-//                    if (!string2.equals(str8)) {
-//                        textView6.setText(string2);
-//                    } else {
-//                        textView6.setText("Something went wrong please try again later");
-//                    }
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//            z = false;
-//        }
-//        else {
-//            imageView3.setVisibility(8);
-//            linearLayout.setVisibility(8);
-//            z = false;
-//            textView6.setVisibility(0);
-//            textView6.setText("Server not responsing, please try again later...");
-//        }
-//        Builder builder = new Builder(this);
-//        builder.setCancelable(z);
-//        builder.setView(view);
-//        final AlertDialog create = builder.create();
-//        imageView.setOnClickListener(new OnClickListener() {
-//            public void onClick(View view) {
-//                create.dismiss();
-//            }
-//        });
-//        create.show();
     }
+
+
+    protected void mOpenVerifyFragment()
+    {
+        AgentVerificationBottomSheet3DialogFragment bankListBottomSheet3DialogFragment = new AgentVerificationBottomSheet3DialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("activity", "withdrawal");
+        bankListBottomSheet3DialogFragment.setArguments(bundle);
+        bankListBottomSheet3DialogFragment.show(getSupportFragmentManager(), bankListBottomSheet3DialogFragment.getTag());
+    }
+
 }
