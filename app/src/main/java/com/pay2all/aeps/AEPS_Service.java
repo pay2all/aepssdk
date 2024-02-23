@@ -1,6 +1,5 @@
 package com.pay2all.aeps;
 
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,12 +10,14 @@ import com.pay2all.aeps.AEPSICICI.AadhaarPay;
 import com.pay2all.aeps.AEPSICICI.BalaneEnquiry;
 import com.pay2all.aeps.AEPSICICI.MiniStatement;
 import com.pay2all.aeps.AEPSICICI.Withdrawal;
+import com.pay2all.aeps.aepsnew.AEPSNewService;
 import com.pay2all.aeps.AgentVerifyDetail.VerifyAgent;
 import com.pay2all.aeps.Reports.TransactionReports;
 
 public class AEPS_Service extends AppCompatActivity {
 
     int INTENTCODE=1421;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +114,22 @@ public class AEPS_Service extends AppCompatActivity {
         {
             intent=new Intent(AEPS_Service.this, VerifyAgent.class);
         }
+        else if (Constants.service_id.equalsIgnoreCase("be3"))
+        {
+            mCallNewAEPS("159","Balance Enquiry");
+        }
+        else if (Constants.service_id.equalsIgnoreCase("cw3"))
+        {
+            mCallNewAEPS("158","Cash Withdrawal");
+        }
+        else if (Constants.service_id.equalsIgnoreCase("mst3"))
+        {
+            mCallNewAEPS("172","Mini Statement");
+        }
+        else if (Constants.service_id.equalsIgnoreCase("ap3"))
+        {
+            mCallNewAEPS("175","Aadhaar Pay");
+        }
 
         startActivityForResult(intent,INTENTCODE);
         finish();
@@ -142,8 +159,16 @@ public class AEPS_Service extends AppCompatActivity {
                     finish();
                 }
             }
-
-
         }
+    }
+
+    protected void mCallNewAEPS(String provider_id,String type)
+    {
+        Intent intent=new Intent(AEPS_Service.this, AEPSNewService.class);
+        intent.putExtra("provider_id",provider_id);
+        intent.putExtra("payment_id","5");
+        intent.putExtra("api_id","");
+        intent.putExtra("type",type);
+        startActivity(intent);
     }
 }

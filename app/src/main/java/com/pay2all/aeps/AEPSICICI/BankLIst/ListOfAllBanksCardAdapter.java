@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.pay2all.aeps.aepsnew.AEPSNewService;
 import com.pay2all.aeps.Constants;
 import com.pay2all.aeps.AEPSICICI.AadhaarPay;
 import com.pay2all.aeps.AEPSICICI.BalaneEnquiry;
@@ -84,8 +85,12 @@ public class ListOfAllBanksCardAdapter extends RecyclerView.Adapter<ListOfAllBan
                         ((BalaneEnquiry) ListOfAllBanksCardAdapter.this.context).mGetBankDetail((BankListItems) ListOfAllBanksCardAdapter.this.bankListItems.get(ViewHolder.this.getAdapterPosition()));
                     } else if (BankListBottomSheet3DialogFragment.activity_name.equalsIgnoreCase("aadhaar")) {
                         ((AadhaarPay) ListOfAllBanksCardAdapter.this.context).mGetBankDetail((BankListItems) ListOfAllBanksCardAdapter.this.bankListItems.get(ViewHolder.this.getAdapterPosition()));
-                    } else if (BankListBottomSheet3DialogFragment.activity_name.equalsIgnoreCase("with")) {
+                    }
+                    else if (BankListBottomSheet3DialogFragment.activity_name.equalsIgnoreCase("with")) {
                         ((Withdrawal) ListOfAllBanksCardAdapter.this.context).mGetBankDetail((BankListItems) ListOfAllBanksCardAdapter.this.bankListItems.get(ViewHolder.this.getAdapterPosition()));
+                    }
+                    else if (BankListBottomSheet3DialogFragment.activity_name.equalsIgnoreCase("withnew")) {
+                        ((AEPSNewService) ListOfAllBanksCardAdapter.this.context).mGetBankDetail( bankListItems.get(getAdapterPosition()));
                     }
                 }
             });

@@ -11,7 +11,9 @@ import com.pay2all.aeps.AEPSICICI.AadhaarPay;
 import com.pay2all.aeps.AEPSICICI.BalaneEnquiry;
 import com.pay2all.aeps.AEPSICICI.MiniStatement;
 import com.pay2all.aeps.AEPSICICI.Withdrawal;
+
 import com.pay2all.aeps.R;
+import com.pay2all.aeps.aepsnew.AEPSNewService;
 
 import java.util.List;
 
@@ -36,9 +38,14 @@ public class DeviceCardAdapter extends Adapter<DeviceCardAdapter.ViewHolder> {
                         ((MiniStatement) DeviceCardAdapter.this.context).mGetData(devicesItems);
                     } else if (devicesItems.getFragment_type().equals("aadhaar")) {
                         ((AadhaarPay) DeviceCardAdapter.this.context).mGetData(devicesItems);
-                    } else if (devicesItems.getFragment_type().equals("with")) {
+                    }
+                    else if (devicesItems.getFragment_type().equals("with")) {
                         ((Withdrawal) DeviceCardAdapter.this.context).mGetData(devicesItems);
-                    } else {
+                    }
+                    else if (devicesItems.getFragment_type().equals("withnew")) {
+                        ((AEPSNewService) DeviceCardAdapter.this.context).mGetDeviceDetail(devicesItems);
+                    }
+                    else {
                         ((BalaneEnquiry) DeviceCardAdapter.this.context).mGetData(devicesItems);
                     }
                 }

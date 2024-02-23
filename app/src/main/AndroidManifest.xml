@@ -118,6 +118,10 @@
             android:label="2 Factor Authentication"
             />
 
+
+        <activity android:name=".aepsnew.AEPSNewService"
+            />
+
     </application>
 
 </manifest>

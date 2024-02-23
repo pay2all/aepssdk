@@ -9,5 +9,11 @@
     <string name="capture_fingerprint">Capture Fingerprint</string>
     <string name="proceed_now">Proceed Now</string>
 
+    <string name="term_condition_icici">I hereby accept the AePS Terms and Conditions and voluntarily consent to ICICI Bank to obtain my Aadhaar
+ Virtual id and fingerprint for authentication with UIDAI. I have been informed that my identity information will be
+used for authentication and Bank will share Aadhaar number and/or biometrics with CIDR/UIDAI, and CIDR/UIDAI will
+share with Bank, authentication data/information which shall be used for the informed purpose of AePS transaction.
+The above consent and purpose of collecting Information has been explained to me in my local language.</string>
+
     <string name="rs">\u20B9</string>
 </resources>
