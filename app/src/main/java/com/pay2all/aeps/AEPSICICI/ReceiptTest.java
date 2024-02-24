@@ -41,6 +41,7 @@ public class ReceiptTest extends AppCompatActivity {
     String number="",aadhaar_number="",bank="";
     String str="";
     String str2 = str;
+    String provider_id = "provider_id";
     String str3 = "order_id";
     String str4 = "utr";
     String str5 = "balance";
@@ -124,20 +125,21 @@ public class ReceiptTest extends AppCompatActivity {
         button_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mIsSaved=true;
-
-                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.S)
-                {
-                    mSaveFile(loadBitmapFromView(cardview_receipt));
-                }
-                else {
-
-                    if (mCheckWriteStorage()) {
-                        mSaveFile(loadBitmapFromView(cardview_receipt));
-                    } else {
-                        mRequestWriteStorage();
-                    }
-                }
+                finish();
+//                mIsSaved=true;
+//
+//                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.S)
+//                {
+//                    mSaveFile(loadBitmapFromView(cardview_receipt));
+//                }
+//                else {
+//
+//                    if (mCheckWriteStorage()) {
+//                        mSaveFile(loadBitmapFromView(cardview_receipt));
+//                    } else {
+//                        mRequestWriteStorage();
+//                    }
+//                }
 
             }
         });
@@ -168,7 +170,8 @@ public class ReceiptTest extends AppCompatActivity {
                         share.putExtra(Intent.EXTRA_STREAM, file);
                         startActivity(Intent.createChooser(share, "Share Receipt"));
                         finish();
-                    } else {
+                    }
+                    else {
                         mRequestWriteStorage();
                     }
                 }
@@ -197,6 +200,10 @@ public class ReceiptTest extends AppCompatActivity {
                 {
                     iv_status.setImageDrawable(getResources().getDrawable(R.drawable.failed_icon));
                 }
+                else if (Constants.service_id.contains("3")&&string.equals("1"))
+                {
+                    iv_status.setImageDrawable(getResources().getDrawable(R.drawable.success));
+                }
                 else
                 {
                     iv_status.setImageDrawable(getResources().getDrawable(R.drawable.error_icon));
@@ -221,7 +228,8 @@ public class ReceiptTest extends AppCompatActivity {
                 sb2.append(this.aadhaar_number.substring(8, this.aadhaar_number.length()));
                 textView7.setText(Constants.bank_name);
                 textView8.setText(sb2.toString());
-            } catch (JSONException e) {
+            }
+            catch (JSONException e) {
                 e.printStackTrace();
             }
         }

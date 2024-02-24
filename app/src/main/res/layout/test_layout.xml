@@ -11,6 +11,7 @@
     android:layout_height="40dp"
     android:src="@drawable/cross"
     android:layout_gravity="end"
+    android:visibility="gone"
     />
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_receipt"
@@ -343,7 +344,7 @@
             android:id="@+id/button_save"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="Save"
+            android:text="Exit"
             android:background="@drawable/button_shape"
             android:textColor="@color/white"
             android:layout_marginLeft="40dp"

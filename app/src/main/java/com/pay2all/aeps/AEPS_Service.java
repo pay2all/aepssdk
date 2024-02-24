@@ -24,7 +24,7 @@ public class AEPS_Service extends AppCompatActivity {
         setContentView(R.layout.activity_a_e_p_s__service);
         Bundle intent=getIntent().getExtras();
 
-        if (intent.containsKey("outlet_id"))
+        if (getIntent().hasExtra("outlet_id"))
         {
             Constants.outlet_id=intent.getString("outlet_id");
         }
@@ -116,19 +116,19 @@ public class AEPS_Service extends AppCompatActivity {
         }
         else if (Constants.service_id.equalsIgnoreCase("be3"))
         {
-            mCallNewAEPS("159","Balance Enquiry");
+            intent= mCallNewAEPS("159","Balance Enquiry");
         }
         else if (Constants.service_id.equalsIgnoreCase("cw3"))
         {
-            mCallNewAEPS("158","Cash Withdrawal");
+            intent=  mCallNewAEPS("158","Cash Withdrawal");
         }
         else if (Constants.service_id.equalsIgnoreCase("mst3"))
         {
-            mCallNewAEPS("172","Mini Statement");
+            intent= mCallNewAEPS("172","Mini Statement");
         }
         else if (Constants.service_id.equalsIgnoreCase("ap3"))
         {
-            mCallNewAEPS("175","Aadhaar Pay");
+           intent= mCallNewAEPS("175","Aadhaar Pay");
         }
 
         startActivityForResult(intent,INTENTCODE);
@@ -162,13 +162,15 @@ public class AEPS_Service extends AppCompatActivity {
         }
     }
 
-    protected void mCallNewAEPS(String provider_id,String type)
+    protected Intent mCallNewAEPS(String provider_id,String type)
     {
         Intent intent=new Intent(AEPS_Service.this, AEPSNewService.class);
         intent.putExtra("provider_id",provider_id);
         intent.putExtra("payment_id","5");
         intent.putExtra("api_id","");
         intent.putExtra("type",type);
-        startActivity(intent);
+
+
+        return intent;
     }
 }

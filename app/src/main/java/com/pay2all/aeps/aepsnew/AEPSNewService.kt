@@ -46,6 +46,7 @@ import com.pay2all.aeps.AEPSICICI.ReceiptTest
 import com.pay2all.aeps.AgentVerificationBottomSheet3DialogFragment
 import com.pay2all.aeps.AgentVerifyDetail.VerifyAgent
 import com.pay2all.aeps.BuildConfig
+import com.pay2all.aeps.Constants
 import com.pay2all.aeps.CustomeProgressBar
 import com.pay2all.aeps.DBHelper
 import com.pay2all.aeps.DetectConnection
@@ -317,15 +318,15 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
                         val json_data=mEncodByteToStringBase64(UTLsData.encryptMsg(mGetJSONData(), this.secretKey))
 
                         Log.e("data","json_data "+mGetJSONData())
-                        dialog?.mShowDialog()
-                        viewModel.mCallAEPSAPI(biometricdata,json_data.toString())
+//                        dialog?.mShowDialog()
+//                        viewModel.mCallAEPSAPI(biometricdata,json_data.toString())
 
-//                        val data="{\"status_id\":1,\"amount\":0,\"balance\":22.780000000000001136868377216160297393798828125,\"utr\":\"405318256786\",\"terminal_id\":\"NJ196692\",\"order_id\":\"MSBS0950071220224181656950I\",\"message\":\"Request Completed\",\"error_message\":null,\"aadhaar_number\":\"7588XXXX3117\",\"bank_name\":\"AIRTEL PAYMENTS BANK\",\"response\":\"{\\\"status\\\":true,\\\"message\\\":\\\"Request Completed\\\",\\\"data\\\":{\\\"terminalId\\\":\\\"NJ196692\\\",\\\"requestTransactionTime\\\":\\\"22\\/02\\/2024 18:16:56\\\",\\\"transactionAmount\\\":0.0,\\\"transactionStatus\\\":\\\"successful\\\",\\\"balanceAmount\\\":22.78,\\\"strMiniStatementBalance\\\":null,\\\"bankRRN\\\":\\\"405318256786\\\",\\\"transactionType\\\":\\\"MS\\\",\\\"fpTransactionId\\\":\\\"MSBS0950071220224181656950I\\\",\\\"merchantTxnId\\\":\\\"43\\\",\\\"errorCode\\\":null,\\\"errorMessage\\\":null,\\\"merchantTransactionId\\\":null,\\\"bankAccountNumber\\\":null,\\\"ifscCode\\\":null,\\\"bcName\\\":null,\\\"transactionTime\\\":null,\\\"agentId\\\":0,\\\"issuerBank\\\":null,\\\"customerAadhaarNumber\\\":null,\\\"customerName\\\":null,\\\"stan\\\":null,\\\"rrn\\\":null,\\\"uidaiAuthCode\\\":null,\\\"bcLocation\\\":null,\\\"demandSheetId\\\":null,\\\"mobileNumber\\\":null,\\\"urnId\\\":null,\\\"miniStatementStructureModel\\\":[{\\\"date\\\":\\\"22\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"100.0\\\",\\\"narration\\\":\\\" 6669718191        \\\"},{\\\"date\\\":\\\"22\\/02\\\",\\\"txnType\\\":\\\"Cr\\\",\\\"amount\\\":\\\"100.0\\\",\\\"narration\\\":\\\" PH402221740465166 \\\"},{\\\"date\\\":\\\"14\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"3500.0\\\",\\\"narration\\\":\\\" PH402141162259146 \\\"},{\\\"date\\\":\\\"09\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"2.7\\\",\\\"narration\\\":\\\" AOC080236411559   \\\"},{\\\"date\\\":\\\"09\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"15.0\\\",\\\"narration\\\":\\\" AOC080236411559   \\\"},{\\\"date\\\":\\\"08\\/02\\\",\\\"txnType\\\":\\\"Cr\\\",\\\"amount\\\":\\\"3500.0\\\",\\\"narration\\\":\\\" PH402081234150612 \\\"},{\\\"date\\\":\\\"06\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"14.0\\\",\\\"narration\\\":\\\" PH402061903377507 \\\"},{\\\"date\\\":\\\"06\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"10.0\\\",\\\"narration\\\":\\\" PH402061903190875 \\\"},{\\\"date\\\":\\\"06\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"10.0\\\",\\\"narration\\\":\\\" PH402061091266873 \\\"}],\\\"miniOffusStatementStructureModel\\\":null,\\\"miniOffusFlag\\\":false,\\\"transactionRemark\\\":null,\\\"bankName\\\":null,\\\"prospectNumber\\\":null,\\\"internalReferenceNumber\\\":null,\\\"biTxnType\\\":null,\\\"subVillageName\\\":null,\\\"virtualId\\\":null,\\\"userProfileResponseModel\\\":null,\\\"hindiErrorMessage\\\":null,\\\"loanAccNo\\\":null,\\\"responseCode\\\":\\\"00\\\",\\\"fpkAgentId\\\":null,\\\"additionalData\\\":null},\\\"statusCode\\\":10000}\",\"mini_statement\":[{\"date\":\"22\\/02\",\"txnType\":\"Dr\",\"amount\":\"100.0\",\"narration\":\" 6669718191        \"},{\"date\":\"22\\/02\",\"txnType\":\"Cr\",\"amount\":\"100.0\",\"narration\":\" PH402221740465166 \"},{\"date\":\"14\\/02\",\"txnType\":\"Dr\",\"amount\":\"3500.0\",\"narration\":\" PH402141162259146 \"},{\"date\":\"09\\/02\",\"txnType\":\"Dr\",\"amount\":\"2.7\",\"narration\":\" AOC080236411559   \"},{\"date\":\"09\\/02\",\"txnType\":\"Dr\",\"amount\":\"15.0\",\"narration\":\" AOC080236411559   \"},{\"date\":\"08\\/02\",\"txnType\":\"Cr\",\"amount\":\"3500.0\",\"narration\":\" PH402081234150612 \"},{\"date\":\"06\\/02\",\"txnType\":\"Dr\",\"amount\":\"14.0\",\"narration\":\" PH402061903377507 \"},{\"date\":\"06\\/02\",\"txnType\":\"Dr\",\"amount\":\"10.0\",\"narration\":\" PH402061903190875 \"},{\"date\":\"06\\/02\",\"txnType\":\"Dr\",\"amount\":\"10.0\",\"narration\":\" PH402061091266873 \"}],\"report_id\":43,\"request_id\":\"\"}"
-//                        val intent = Intent(this@AEPSNewService, MiniStatementLIst::class.java)
-//                        intent.putExtra("data", data)
-//                        intent.putExtra("number", binding.edittextCustomerMobile.text.toString())
-//                        intent.putExtra("aadhaar", binding.edittextCustomerAadhaarNumber.text.toString())
-//                        startActivity(intent)
+                        val data="{\"status_id\":1,\"amount\":0,\"balance\":22.780000000000001136868377216160297393798828125,\"utr\":\"405318256786\",\"terminal_id\":\"NJ196692\",\"order_id\":\"MSBS0950071220224181656950I\",\"message\":\"Request Completed\",\"error_message\":null,\"aadhaar_number\":\"7588XXXX3117\",\"bank_name\":\"AIRTEL PAYMENTS BANK\",\"response\":\"{\\\"status\\\":true,\\\"message\\\":\\\"Request Completed\\\",\\\"data\\\":{\\\"terminalId\\\":\\\"NJ196692\\\",\\\"requestTransactionTime\\\":\\\"22\\/02\\/2024 18:16:56\\\",\\\"transactionAmount\\\":0.0,\\\"transactionStatus\\\":\\\"successful\\\",\\\"balanceAmount\\\":22.78,\\\"strMiniStatementBalance\\\":null,\\\"bankRRN\\\":\\\"405318256786\\\",\\\"transactionType\\\":\\\"MS\\\",\\\"fpTransactionId\\\":\\\"MSBS0950071220224181656950I\\\",\\\"merchantTxnId\\\":\\\"43\\\",\\\"errorCode\\\":null,\\\"errorMessage\\\":null,\\\"merchantTransactionId\\\":null,\\\"bankAccountNumber\\\":null,\\\"ifscCode\\\":null,\\\"bcName\\\":null,\\\"transactionTime\\\":null,\\\"agentId\\\":0,\\\"issuerBank\\\":null,\\\"customerAadhaarNumber\\\":null,\\\"customerName\\\":null,\\\"stan\\\":null,\\\"rrn\\\":null,\\\"uidaiAuthCode\\\":null,\\\"bcLocation\\\":null,\\\"demandSheetId\\\":null,\\\"mobileNumber\\\":null,\\\"urnId\\\":null,\\\"miniStatementStructureModel\\\":[{\\\"date\\\":\\\"22\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"100.0\\\",\\\"narration\\\":\\\" 6669718191        \\\"},{\\\"date\\\":\\\"22\\/02\\\",\\\"txnType\\\":\\\"Cr\\\",\\\"amount\\\":\\\"100.0\\\",\\\"narration\\\":\\\" PH402221740465166 \\\"},{\\\"date\\\":\\\"14\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"3500.0\\\",\\\"narration\\\":\\\" PH402141162259146 \\\"},{\\\"date\\\":\\\"09\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"2.7\\\",\\\"narration\\\":\\\" AOC080236411559   \\\"},{\\\"date\\\":\\\"09\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"15.0\\\",\\\"narration\\\":\\\" AOC080236411559   \\\"},{\\\"date\\\":\\\"08\\/02\\\",\\\"txnType\\\":\\\"Cr\\\",\\\"amount\\\":\\\"3500.0\\\",\\\"narration\\\":\\\" PH402081234150612 \\\"},{\\\"date\\\":\\\"06\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"14.0\\\",\\\"narration\\\":\\\" PH402061903377507 \\\"},{\\\"date\\\":\\\"06\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"10.0\\\",\\\"narration\\\":\\\" PH402061903190875 \\\"},{\\\"date\\\":\\\"06\\/02\\\",\\\"txnType\\\":\\\"Dr\\\",\\\"amount\\\":\\\"10.0\\\",\\\"narration\\\":\\\" PH402061091266873 \\\"}],\\\"miniOffusStatementStructureModel\\\":null,\\\"miniOffusFlag\\\":false,\\\"transactionRemark\\\":null,\\\"bankName\\\":null,\\\"prospectNumber\\\":null,\\\"internalReferenceNumber\\\":null,\\\"biTxnType\\\":null,\\\"subVillageName\\\":null,\\\"virtualId\\\":null,\\\"userProfileResponseModel\\\":null,\\\"hindiErrorMessage\\\":null,\\\"loanAccNo\\\":null,\\\"responseCode\\\":\\\"00\\\",\\\"fpkAgentId\\\":null,\\\"additionalData\\\":null},\\\"statusCode\\\":10000}\",\"mini_statement\":[{\"date\":\"22\\/02\",\"txnType\":\"Dr\",\"amount\":\"100.0\",\"narration\":\" 6669718191        \"},{\"date\":\"22\\/02\",\"txnType\":\"Cr\",\"amount\":\"100.0\",\"narration\":\" PH402221740465166 \"},{\"date\":\"14\\/02\",\"txnType\":\"Dr\",\"amount\":\"3500.0\",\"narration\":\" PH402141162259146 \"},{\"date\":\"09\\/02\",\"txnType\":\"Dr\",\"amount\":\"2.7\",\"narration\":\" AOC080236411559   \"},{\"date\":\"09\\/02\",\"txnType\":\"Dr\",\"amount\":\"15.0\",\"narration\":\" AOC080236411559   \"},{\"date\":\"08\\/02\",\"txnType\":\"Cr\",\"amount\":\"3500.0\",\"narration\":\" PH402081234150612 \"},{\"date\":\"06\\/02\",\"txnType\":\"Dr\",\"amount\":\"14.0\",\"narration\":\" PH402061903377507 \"},{\"date\":\"06\\/02\",\"txnType\":\"Dr\",\"amount\":\"10.0\",\"narration\":\" PH402061903190875 \"},{\"date\":\"06\\/02\",\"txnType\":\"Dr\",\"amount\":\"10.0\",\"narration\":\" PH402061091266873 \"}],\"report_id\":43,\"request_id\":\"\"}"
+                        val intent = Intent(this@AEPSNewService, MiniStatementLIst::class.java)
+                        intent.putExtra("data", data)
+                        intent.putExtra("number", edittext_customer_mobile.text.toString())
+                        intent.putExtra("aadhaar", edittext_customer_aadhaar_number.text.toString())
+                        startActivity(intent)
                     }
                     else{
                         mCheckAppInstall()
@@ -384,7 +385,7 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
         var jsonObject:JSONObject ?=null
         try {
             jsonObject= JSONObject()
-            jsonObject.put("mobile_number",dbHelper.mGetMobile())
+            jsonObject.put("mobile_number",Constants.mobile)
             jsonObject.put("payment_id",payment_id)
             jsonObject.put("customer_mobile_number",edittext_customer_mobile.text.toString())
             jsonObject.put("amount",edittext_amount.text.toString())
@@ -397,7 +398,7 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
             jsonObject.put("ci",ci)
             jsonObject.put("lat",lat.toString())
             jsonObject.put("long",log.toString())
-            jsonObject.put("client_id",dbHelper.mGetMobile()+System.currentTimeMillis())
+            jsonObject.put("client_id",Constants.mobile+System.currentTimeMillis())
 //            jsonObject.put("biometric_data",biometricdata)
 
         }
@@ -527,29 +528,39 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
             val jsonObject = JSONObject(str)
             if (jsonObject.has("status_id")) {
                 status_id = jsonObject.getString("status_id")
-                if (status_id == "1" || status_id.equals("success", ignoreCase = true)) {
-                    action = "scan"
-                    ll_fingerprint.setVisibility(View.GONE)
-                    button_re_capture.setVisibility(View.GONE)
-                    button_submit.setText(resources.getString(R.string.capture_fingerprint))
-                    bank_id = ""
-                    device_package = ""
-                    edittext_customer_mobile.setText("")
-                    edittext_customer_aadhaar_number.setText("")
-                    textview_select_device.setText("Select Device")
-                    biometricdata = ""
-                    textview_bank.setText("Select Bank")
-                }
             }
-        } catch (e: JSONException) {
+        }
+        catch (e: JSONException) {
             e.printStackTrace()
         }
+
         val intent = Intent(this@AEPSNewService, ReceiptTest::class.java)
         intent.putExtra("status", status_id)
         intent.putExtra("data", str)
         intent.putExtra("number", edittext_customer_mobile.text.toString())
+        intent.putExtra("aadhaar", edittext_customer_aadhaar_number.text.toString())
         intent.putExtra("service_name", type)
+        intent.putExtra("provider_id", provider_id)
         startActivity(intent)
+
+
+        if (status_id!="") {
+            if (status_id == "1" || status_id.equals("success", ignoreCase = true)) {
+                edittext_customer_mobile.setText("")
+                edittext_customer_aadhaar_number.setText("")
+
+
+                action = "scan"
+                ll_fingerprint.setVisibility(View.GONE)
+                button_re_capture.setVisibility(View.GONE)
+                button_submit.setText(resources.getString(R.string.capture_fingerprint))
+                bank_id = ""
+                device_package = ""
+                textview_select_device.setText("Select Device")
+                biometricdata = ""
+                textview_bank.setText("Select Bank")
+            }
+        }
     }
 
     private fun mShowDialogDeviceDialog() {

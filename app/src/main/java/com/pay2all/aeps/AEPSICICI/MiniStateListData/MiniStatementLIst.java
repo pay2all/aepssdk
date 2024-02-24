@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,8 +45,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MiniStatementLIst extends AppCompatActivity {
     CardView cardview_receipt;
     Uri file = null;
-    ImageView imageview_close;
-    ImageView imageview_share;
+    Button imageview_close;
+    Button imageview_share;
     LinearLayout ll_all_detail;
     MiniStatementCardAdapter miniStatementCardAdapter;
     List<MiniStatementItems> miniStatementItems;
@@ -68,25 +69,25 @@ public class MiniStatementLIst extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-        this.cardview_receipt = (CardView) findViewById(R.id.cardview_receipt);
-        this.imageview_close = (ImageView) findViewById(R.id.imageview_close);
-        this.textview_available_balance = (TextView) findViewById(R.id.textview_available_balance);
-        this.textview_utr = (TextView) findViewById(R.id.textview_utr);
-        this.textview_order_id = (TextView) findViewById(R.id.textview_order_id);
-        this.textview_customer_mob = (TextView) findViewById(R.id.textview_customer_mob);
-        this.textview_aadhaar_number = (TextView) findViewById(R.id.textview_aadhaar_number);
-        this.textview_message = (TextView) findViewById(R.id.textview_message);
-        this.textview_bank_receipt = (TextView) findViewById(R.id.textview_bank);
-        this.ll_all_detail = (LinearLayout) findViewById(R.id.ll_all_detail);
-        this.imageview_share = (ImageView) findViewById(R.id.imageview_share);
-        this.recyclerview_mini_statement = (RecyclerView) findViewById(R.id.recyclerview_mini_statement);
+        this.cardview_receipt =  findViewById(R.id.cardview_receipt);
+        this.imageview_close =  findViewById(R.id.imageview_close);
+        this.textview_available_balance =  findViewById(R.id.textview_available_balance);
+        this.textview_utr =  findViewById(R.id.textview_utr);
+        this.textview_order_id =  findViewById(R.id.textview_order_id);
+        this.textview_customer_mob =  findViewById(R.id.textview_customer_mob);
+        this.textview_aadhaar_number =  findViewById(R.id.textview_aadhaar_number);
+        this.textview_message =  findViewById(R.id.textview_message);
+        this.textview_bank_receipt =  findViewById(R.id.textview_bank);
+        this.ll_all_detail =  findViewById(R.id.ll_all_detail);
+        this.imageview_share =  findViewById(R.id.imageview_share);
+        this.recyclerview_mini_statement =  findViewById(R.id.recyclerview_mini_statement);
         this.recyclerview_mini_statement.setLayoutManager(new LinearLayoutManager(this));
         this.miniStatementItems = new ArrayList();
         this.miniStatementCardAdapter = new MiniStatementCardAdapter(this, this.miniStatementItems);
         this.recyclerview_mini_statement.setAdapter(this.miniStatementCardAdapter);
         this.imageview_close.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                MiniStatementLIst.this.finish();
+                finish();
             }
         });
         mShowData(getIntent().getStringExtra("data"), getIntent().getStringExtra("number"), getIntent().getStringExtra("aadhaar"));
@@ -120,8 +121,8 @@ public class MiniStatementLIst extends AppCompatActivity {
         String str12 = NotificationCompat.CATEGORY_STATUS;
         String str13 = "";
         if (!str4.equals(str13)) {
-            this.ll_all_detail.setVisibility(0);
-            this.textview_message.setVisibility(8);
+            this.ll_all_detail.setVisibility(View.VISIBLE);
+            this.textview_message.setVisibility(View.GONE);
             try {
                 JSONObject jSONObject = new JSONObject(str4);
                 String string = jSONObject.has(str12) ? jSONObject.getString(str12) : str13;
@@ -150,45 +151,53 @@ public class MiniStatementLIst extends AppCompatActivity {
                         this.miniStatementCardAdapter.notifyDataSetChanged();
                     }
                 }
-                if (string.equals(str13)) {
-                    this.imageview_share.setVisibility(View.GONE);
-                    this.textview_message.setVisibility(0);
-                    this.ll_all_detail.setVisibility(8);
-                    this.textview_message.setText(string2);
-                } else if (string.equals("0")) {
-                    this.ll_all_detail.setVisibility(0);
-                    this.textview_message.setVisibility(8);
-                    TextView textView = this.textview_available_balance;
-                    StringBuilder sb2 = new StringBuilder();
-                    sb2.append("Rs ");
-                    sb2.append(string3);
-                    textView.setText(sb2.toString());
-                    this.textview_utr.setText(string4);
-                    this.textview_order_id.setText(string5);
-                    this.textview_customer_mob.setText(str2);
-                    TextView textView2 = this.textview_aadhaar_number;
-                    StringBuilder sb3 = new StringBuilder();
-                    sb3.append("XXXX-XXXX-");
-                    sb3.append(str3.substring(8, str3.length()));
-                    textView2.setText(sb3.toString());
-                    this.textview_bank_receipt.setText(string6);
-                } else {
-                    this.imageview_share.setVisibility(8);
-                    this.textview_message.setVisibility(0);
-                    this.ll_all_detail.setVisibility(8);
-                    if (!string2.equals(str13)) {
-                        this.textview_message.setText(string2);
-                    } else {
-                        this.textview_message.setText("Something went wrong please try again later");
-                    }
+
+                this.ll_all_detail.setVisibility(View.VISIBLE);
+                this.textview_message.setVisibility(View.GONE);
+                TextView textView = this.textview_available_balance;
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("Rs ");
+                sb2.append(string3);
+                textView.setText(sb2.toString());
+                this.textview_utr.setText(string4);
+                this.textview_order_id.setText(string5);
+                this.textview_customer_mob.setText(str2);
+                TextView textView2 = this.textview_aadhaar_number;
+
+
+                if (str3.length()>8) {
+                    String sb3 = "XXXX-XXXX-" + str3.substring(8);
+                    textView2.setText(sb3);
                 }
+
+
+                this.textview_bank_receipt.setText(string6);
+//                if (string.equals(str13)) {
+//                    this.imageview_share.setVisibility(View.GONE);
+//                    this.textview_message.setVisibility(View.VISIBLE);
+//                    this.ll_all_detail.setVisibility(View.GONE);
+//                    this.textview_message.setText(string2);
+//                }
+//                else if (string.equals("0")) {
+//
+//                } else {
+//                    this.imageview_share.setVisibility(View.GONE);
+//                    this.textview_message.setVisibility(View.VISIBLE);
+//                    this.ll_all_detail.setVisibility(View.GONE);
+//                    if (!string2.equals(str13)) {
+//                        this.textview_message.setText(string2);
+//                    } else {
+//                        this.textview_message.setText("Something went wrong please try again later");
+//                    }
+//                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else {
-            this.imageview_share.setVisibility(8);
-            this.ll_all_detail.setVisibility(8);
-            this.textview_message.setVisibility(0);
+        }
+        else {
+            this.imageview_share.setVisibility(View.GONE);
+            this.ll_all_detail.setVisibility(View.GONE);
+            this.textview_message.setVisibility(View.VISIBLE);
             this.textview_message.setText("Server not responsing, please try again later...");
         }
     }
@@ -201,7 +210,6 @@ public class MiniStatementLIst extends AppCompatActivity {
         return createBitmap;
     }
 
-    /* access modifiers changed from: protected */
     public void mSaveFile(Bitmap bitmap) {
         boolean saved;
         OutputStream fos;

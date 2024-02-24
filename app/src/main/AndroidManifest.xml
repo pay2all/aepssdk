@@ -8,21 +8,21 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
     <queries>
-        <package android:name="com.mantra.rdservice"/>
-        <package android:name="com.scl.rdservice"/>
-        <package android:name="com.acpl.registersdk"/>
-        <package android:name="com.secugen.rdservice"/>
-        <package android:name="com.tatvik.bio.tmf20"/>
-        <package android:name="com.precision.pb510.rdservice"/>
-        <package android:name="com.evolute.rdservice"/>
+        <package android:name="com.mantra.rdservice" />
+        <package android:name="com.scl.rdservice" />
+        <package android:name="com.acpl.registersdk" />
+        <package android:name="com.secugen.rdservice" />
+        <package android:name="com.tatvik.bio.tmf20" />
+        <package android:name="com.precision.pb510.rdservice" />
+        <package android:name="com.evolute.rdservice" />
     </queries>
 
     <application
@@ -30,98 +30,77 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        <activity-->
-<!--            android:exported="true"-->
-<!--            android:name=".TestAEPS">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity
+            android:name=".TestAEPS"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-         <activity
-            android:exported="true"
-            android:name=".AEPS_Service" />
-         <activity
-            android:exported="true"
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AEPS_Service"
+            android:exported="true" />
+        <activity
             android:name=".Reports.TransactionReports"
+            android:exported="true"
             android:label="Transaction History" />
-         <activity
-            android:exported="true"
-            android:name=".AEPSICICI.ReceiptTest"/>
-         <activity
-            android:exported="true"
+        <activity
+            android:name=".AEPSICICI.ReceiptTest"
+            android:exported="true" />
+        <activity
             android:name=".AEPSICICI.Withdrawal"
+            android:exported="true"
             android:label="Cash Withdrawal" />
-         <activity
-            android:exported="true"
+        <activity
             android:name=".AEPSICICI.BalaneEnquiry"
+            android:exported="true"
             android:label="Balance Enquiry" />
-         <activity
-            android:exported="true"
+        <activity
             android:name=".AEPSICICI.AadhaarPay"
+            android:exported="true"
             android:label="Aadhaar Pay" />
-
-         <activity
-            android:exported="true"
+        <activity
             android:name=".AEPSICICI.MiniStatement"
-            android:label="Mini Statement" />
-
-         <activity
             android:exported="true"
+            android:label="Mini Statement" />
+        <activity
             android:name=".AEPSICICI.MiniStateListData.MiniStatementLIst"
+            android:exported="true"
             android:label="Mini Statement" />
-
-         <activity
-            android:exported="true"
+        <activity
             android:name=".PaytmAEPS.BalaneEnquiry"
-            android:label="Balance Enquiry"
-            />
-
-         <activity
             android:exported="true"
+            android:label="Balance Enquiry" />
+        <activity
             android:name=".PaytmAEPS.Withdrawal"
-            android:label="Cash Withdrawal"
-            />
-
-         <activity
             android:exported="true"
+            android:label="Cash Withdrawal" />
+        <activity
             android:name=".PaytmAEPS.MiniStatement"
-            android:label="Mini Statement"
-            />
-
-         <activity
             android:exported="true"
+            android:label="Mini Statement" />
+        <activity
             android:name=".PaytmAEPS.MiniStatementLIst"
-            android:label="Mini Statement"
-            />
-
-         <activity
             android:exported="true"
+            android:label="Mini Statement" />
+        <activity
             android:name=".PaytmAEPS.TransactionReceipt"
-            android:label="@string/app_name"
-            />
-
+            android:exported="true"
+            android:label="@string/app_name" />
         <activity
             android:name=".PaytmAEPS.ReceiptPaytm"
-            android:label="Receipt"
             android:exported="true"
-            />
-
+            android:label="Receipt" />
         <activity
             android:name=".AEPSICICI.ReceiptICICI"
-            android:label="Receipt"
             android:exported="true"
-            />
-
-        <activity android:name=".AgentVerifyDetail.VerifyAgent"
-            android:label="2 Factor Authentication"
-            />
-
-
-        <activity android:name=".aepsnew.AEPSNewService"
-            />
-
+            android:label="Receipt" />
+        <activity
+            android:name=".AgentVerifyDetail.VerifyAgent"
+            android:label="2 Factor Authentication" />
+        <activity android:name=".aepsnew.AEPSNewService" />
     </application>
 
 </manifest>
