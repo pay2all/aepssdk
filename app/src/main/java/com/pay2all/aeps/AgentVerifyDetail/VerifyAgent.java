@@ -40,6 +40,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pay2all.aeps.AEPSICICI.DeviceScanFormateNew;
+import com.pay2all.aeps.BuildConfig;
 import com.pay2all.aeps.Constants;
 import com.pay2all.aeps.DBHelper;
 import com.pay2all.aeps.DetectConnection;
@@ -473,12 +474,10 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
         jsd.execute();
     }
 
-
     protected void mOkkHttps(String json_data)
     {
         class DatNewSubmit extends AsyncTask<String, String,String>
         {
-
             public void onPreExecute() {
                 super.onPreExecute();
 
@@ -508,7 +507,8 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
                             .addFormDataPart("biometric_data",biometricdata)
                             .build();
                     Request request = new Request.Builder()
-                            .url(dbHelper.mBaseURL()+"v1/outletapi")
+//                            .url(dbHelper.mBaseURL()+"v1/outletapi")
+                            .url(BuildConfig.BASEURL+"api/outlet/v1/outletapi")
                             .method("POST", body)
                             .addHeader("Content-Type","application/json; charset=utf-8")
                             .addHeader("Accept","application/json")

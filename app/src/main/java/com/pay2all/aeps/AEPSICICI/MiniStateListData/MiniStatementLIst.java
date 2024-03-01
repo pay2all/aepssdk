@@ -188,7 +188,8 @@ public class MiniStatementLIst extends AppCompatActivity {
 //                        this.textview_message.setText("Something went wrong please try again later");
 //                    }
 //                }
-            } catch (JSONException e) {
+            }
+            catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -196,7 +197,7 @@ public class MiniStatementLIst extends AppCompatActivity {
             this.imageview_share.setVisibility(View.GONE);
             this.ll_all_detail.setVisibility(View.GONE);
             this.textview_message.setVisibility(View.VISIBLE);
-            this.textview_message.setText("Server not responsing, please try again later...");
+            this.textview_message.setText("Server not responding, please try again later...");
         }
     }
 
@@ -234,7 +235,8 @@ public class MiniStatementLIst extends AppCompatActivity {
                 file = imageUri;
 //            file=new File(imageUri.toString()+".png");
 
-            } else {
+            }
+            else {
 
                 String imagesDir = Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_DOWNLOADS).toString() + File.separator + getResources().getString(R.string.app_name).replaceAll(" ", "_");
@@ -269,7 +271,6 @@ public class MiniStatementLIst extends AppCompatActivity {
         return ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.WRITE_EXTERNAL_STORAGE") == 0;
     }
 
-    /* access modifiers changed from: private */
     public void mRequestWriteStorage() {
         String str = "android.permission.WRITE_EXTERNAL_STORAGE";
         if (!ActivityCompat.shouldShowRequestPermissionRationale(this, str)) {

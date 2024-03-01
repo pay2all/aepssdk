@@ -54,7 +54,6 @@ class AEPSViewModel constructor(val mBaseURL:String) : ViewModel() {
 
         val endpointURL=BuildConfig.END_POINT_URL
 
-
         class DatNewSubmit : AsyncTask<String?, String?, String?>() {
 
              override fun doInBackground(vararg strings: String?): String? {
@@ -84,7 +83,6 @@ class AEPSViewModel constructor(val mBaseURL:String) : ViewModel() {
                 }
                 return response_data!!
             }
-
              override fun onPostExecute(s: String?) {
                 super.onPostExecute(s)
                 _mResponse.postValue(s)

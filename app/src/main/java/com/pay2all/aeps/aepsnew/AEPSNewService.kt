@@ -875,6 +875,4 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
             Log.e("location", "Not found")
         }
     }
-
-
 }

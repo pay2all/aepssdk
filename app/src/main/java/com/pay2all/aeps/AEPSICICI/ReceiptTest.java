@@ -192,7 +192,7 @@ public class ReceiptTest extends AppCompatActivity {
                     amount=jSONObject.getString("amount");
                 }
 
-                if (string.equals("0"))
+                if (string.equals("0")||string.equals("1"))
                 {
                     iv_status.setImageDrawable(getResources().getDrawable(R.drawable.success));
                 }
@@ -235,9 +235,6 @@ public class ReceiptTest extends AppCompatActivity {
         }
     }
 
-
-
-    //    for get bitmap from layout
     public static Bitmap loadBitmapFromView(View v) {
         Bitmap bitmap;
         v.setDrawingCacheEnabled(true);
