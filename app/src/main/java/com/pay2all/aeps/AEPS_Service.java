@@ -34,7 +34,6 @@ public class AEPS_Service extends AppCompatActivity {
             Constants.mobile=intent.getString("mobile");
         }
 
-
         if (intent.containsKey("service"))
         {
             Constants.service_id=intent.getString("service");
@@ -65,7 +64,6 @@ public class AEPS_Service extends AppCompatActivity {
             }
             mCallServices();
         }
-
     }
 
     private void mCallServices()
@@ -83,28 +81,23 @@ public class AEPS_Service extends AppCompatActivity {
         else if (Constants.service_id.equalsIgnoreCase("mst"))
         {
             intent=new Intent(AEPS_Service.this, MiniStatement.class);
-
         }
         else if (Constants.service_id.equalsIgnoreCase("th"))
         {
             intent=new Intent(AEPS_Service.this, TransactionReports.class);
-
         }
         else if (Constants.service_id.equalsIgnoreCase("ap"))
         {
             intent=new Intent(AEPS_Service.this, AadhaarPay.class);
-
         }
 
         else if (Constants.service_id.equalsIgnoreCase("mst2"))
         {
             intent=new Intent(AEPS_Service.this, com.pay2all.aeps.PaytmAEPS.MiniStatement.class);
-
         }
         else if (Constants.service_id.equalsIgnoreCase("be2"))
         {
             intent=new Intent(AEPS_Service.this, com.pay2all.aeps.PaytmAEPS.BalaneEnquiry.class);
-
         }
         else if (Constants.service_id.equalsIgnoreCase("cw2"))
         {
@@ -169,7 +162,6 @@ public class AEPS_Service extends AppCompatActivity {
         intent.putExtra("payment_id","5");
         intent.putExtra("api_id","");
         intent.putExtra("type",type);
-
 
         return intent;
     }

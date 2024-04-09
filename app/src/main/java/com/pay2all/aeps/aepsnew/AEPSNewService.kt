@@ -852,12 +852,10 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
         }
     }
 
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
+        grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         val r = myLocation.getLocation(
             applicationContext,
@@ -865,7 +863,8 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
         )
         if (r) {
             Log.e("location", "found")
-        } else {
+        }
+        else {
             Log.e("location", "Not found")
         }
     }
