@@ -537,12 +537,10 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
         intent.putExtra("provider_id", provider_id)
         startActivity(intent)
 
-
         if (status_id!="") {
             if (status_id == "1" || status_id.equals("success", ignoreCase = true)) {
                 edittext_customer_mobile.setText("")
                 edittext_customer_aadhaar_number.setText("")
-
 
                 action = "scan"
                 ll_fingerprint.setVisibility(View.GONE)

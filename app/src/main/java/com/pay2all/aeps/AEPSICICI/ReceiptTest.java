@@ -111,7 +111,7 @@ public class ReceiptTest extends AppCompatActivity {
         textview_amount=findViewById(R.id.textview_amount);
         TextView textView7 = (TextView) findViewById(R.id.textview_bank);
         String str8 = "";
-        TextView textView8 = textView5;
+        TextView textview_aadhaar_number = textView5;
 
         cardview_receipt=findViewById(R.id.cardview_receipt);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -192,6 +192,10 @@ public class ReceiptTest extends AppCompatActivity {
                     amount=jSONObject.getString("amount");
                 }
 
+                if (jSONObject.has("aadhaar_number")){
+                    aadhaar_number=jSONObject.getString("aadhaar_number");
+                }
+
                 if (string.equals("0")||string.equals("1"))
                 {
                     iv_status.setImageDrawable(getResources().getDrawable(R.drawable.success));
@@ -223,11 +227,9 @@ public class ReceiptTest extends AppCompatActivity {
                 sb.append(string3);
                 textView.setText(sb.toString());
                 textView4.setText(this.number);
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append("XXXX-XXXX-");
-                sb2.append(this.aadhaar_number.substring(8, this.aadhaar_number.length()));
+
                 textView7.setText(Constants.bank_name);
-                textView8.setText(sb2.toString());
+                textview_aadhaar_number.setText(aadhaar_number);
             }
             catch (JSONException e) {
                 e.printStackTrace();
