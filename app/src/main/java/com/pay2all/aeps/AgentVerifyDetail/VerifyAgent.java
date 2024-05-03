@@ -89,15 +89,16 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
     Button bt_verify;
 
     SecretKey secretKey ;
-    String provider_id = "159";
 
+    String provider_id = "159";
 
     DBHelper dbHelper;
 
-    RelativeLayout rl_device ;
-    TextView tv_device ;
+    RelativeLayout rl_device;
 
-    String biometricdata ;
+    TextView tv_device;
+
+    String biometricdata;
 
     String ci = "";
     String device_package;
@@ -115,18 +116,15 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
 
     String action = "scan";
 
-
     AlertDialog alertDialog;
 
     MyLocation myLocation = new MyLocation();
-
 
     double lat=0,log=0;
 
     LocationManager locationManager;
 
     String provider="";
-
 
     int PERMISSION_ALL = 1;
     String[] PERMISSIONS = {
@@ -185,7 +183,7 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
 
 
         ed_aadhaar_number = findViewById(R.id.ed_aadhaar_number);
-//        ed_aadhaar_number.setText(dbHelper.mGetAadhaarNumber());
+        ed_aadhaar_number.setText(Constants.aadhaar);
 
         imageview_finger_print = findViewById(R.id.imageview_finger_print);
         ll_fingerprint = findViewById(R.id.ll_fingerprint);

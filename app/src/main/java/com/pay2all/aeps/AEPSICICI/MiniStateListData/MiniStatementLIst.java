@@ -59,7 +59,7 @@ public class MiniStatementLIst extends AppCompatActivity {
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView((int) R.layout.activity_mini_statement_list);
+        setContentView(R.layout.activity_mini_statement_list);
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -118,11 +118,18 @@ public class MiniStatementLIst extends AppCompatActivity {
         String str11 = "statusCode";
         String str12 = NotificationCompat.CATEGORY_STATUS;
         String str13 = "";
+        String aadhaar_number = "";
         if (!str4.equals(str13)) {
             this.ll_all_detail.setVisibility(View.VISIBLE);
             this.textview_message.setVisibility(View.GONE);
             try {
                 JSONObject jSONObject = new JSONObject(str4);
+
+                if (jSONObject.has("aadhaar_number"))
+                {
+                    aadhaar_number=jSONObject.getString("aadhaar_number");
+                }
+
                 String string = jSONObject.has(str12) ? jSONObject.getString(str12) : str13;
                 if (jSONObject.has(str11)) {
                     jSONObject.getString(str11);
@@ -162,11 +169,12 @@ public class MiniStatementLIst extends AppCompatActivity {
                 this.textview_customer_mob.setText(str2);
                 TextView textView2 = this.textview_aadhaar_number;
 
+//                if (str3.length()>8) {
+//                    String sb3 = "XXXX-XXXX-" + str3.substring(8);
+//                    textView2.setText(sb3);
+//                }
 
-                if (str3.length()>8) {
-                    String sb3 = "XXXX-XXXX-" + str3.substring(8);
-                    textView2.setText(sb3);
-                }
+                textView2.setText(aadhaar_number);
 
 
                 this.textview_bank_receipt.setText(string6);

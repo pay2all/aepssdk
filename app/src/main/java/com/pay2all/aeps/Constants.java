@@ -10,5 +10,8 @@ public class Constants {
     public  static boolean isReceipt=true;
 
     public static String status="";
+
     public static String message="";
+
+    public static String aadhaar="";
 }

@@ -553,6 +553,7 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
                 textview_bank.setText("Select Bank")
             }
         }
+
     }
 
     private fun mShowDialogDeviceDialog() {

@@ -44,6 +44,10 @@ public class AEPS_Service extends AppCompatActivity {
             Constants.isReceipt=intent.getBoolean("isReceipt");
         }
 
+        if (intent.containsKey("aadhaar"))
+        {
+            Constants.aadhaar=intent.getString("aadhaar");
+        }
 
         if (intent.containsKey("name"))
         {
