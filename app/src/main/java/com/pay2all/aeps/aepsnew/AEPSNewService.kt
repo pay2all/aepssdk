@@ -567,22 +567,29 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
         builder.setCancelable(false)
         builder.setView(inflate)
         this.alertDialog = builder.create()
-        val strArr = arrayOf("Mantra", "Morpho", "Startek", "SecuGen", "Tatvik", "Precision")
-        val strArr2 = arrayOf(
-            "MANTRA_PROTOBUF",
-            "MORPHO_PROTOBUF",
-            "STARTEK_PROTOBUF",
-            "SECUGEN_PROTOBUF",
-            "TATVIK_PROTOBUF",
-            "PRECISION_PROTOBUF"
-        )
+        val strArr = arrayOf("Mantra","Mantra L1","Mantra IRIS", "Morpho","Morpho (IDEMIA) L1", "Startek", "SecuGen", "Tatvik", "Precision","Precision (PB1000) L1","Aratek A600","Evolute")
+//        val strArr2 = arrayOf(
+//            "MANTRA_PROTOBUF",
+//            "MANTRA_PROTOBUFL1",
+//            "MORPHO_PROTOBUF",
+//            "STARTEK_PROTOBUF",
+//            "SECUGEN_PROTOBUF",
+//            "TATVIK_PROTOBUF",
+//            "PRECISION_PROTOBUF"
+//        )
         val strArr3 = arrayOf(
             "com.mantra.rdservice",
+            "com.mantra.mfs110.rdservice",
+            "com.mantra.mis100v2.rdservice",
             "com.scl.rdservice",
+            "com.idemia.l1rdservice",
             "com.acpl.registersdk",
             "com.secugen.rdservice",
             "com.tatvik.bio.tmf20",
-            "com.precision.pb510.rdservice"
+            "com.precision.pb510.rdservice",
+            "in.co.precisionit.innaitaadhaar",
+            "co.aratek.asix_gms.rdservice",
+            "com.evolute.rdservice"
         )
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -597,7 +604,7 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
             devicesItems.id = sb.toString()
             devicesItems.name = strArr[i]
             devicesItems.package_name = strArr3[i]
-            devicesItems.type = strArr2[i]
+            devicesItems.type = ""
             devicesItems.fragment_type = "withnew"
             arrayList.add(devicesItems)
             deviceCardAdapter.notifyDataSetChanged()
@@ -715,7 +722,6 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
                 else{
                     if (intent.hasExtra("uid")) {
                         edittext_customer_aadhaar_number.setText(intent.getStringExtra("uid"))
-                        //                    Log.e("uid","uid length "+edittext_customer_aadhaar_number.getText().toString().length());
                     }
                 }
             }
@@ -842,12 +848,8 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
         override fun gotLocation(location: Location) {
             val Longitude = location.longitude
             val Latitude = location.latitude
-
-//            Toast.makeText(getApplicationContext(), "Got Location",
-//                    Toast.LENGTH_LONG).show();
             lat = Latitude
             log = Longitude
-//            binding.tvLatLong.text = "Latitude : $lat, Longitude : $log"
         }
     }
 

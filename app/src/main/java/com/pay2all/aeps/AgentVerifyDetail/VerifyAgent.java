@@ -582,9 +582,19 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
         builder.setCancelable(false);
         builder.setView(inflate);
         this.alertDialog = builder.create();
-        String[] strArr = {"Mantra", "Morpho", "Startek","SecuGen","Tatvik","Precision"};
-        String[] strArr2 = {"MANTRA_PROTOBUF", "MORPHO_PROTOBUF", "STARTEK_PROTOBUF", "SECUGEN_PROTOBUF", "TATVIK_PROTOBUF", "PRECISION_PROTOBUF"};
-        String[] strArr3 = {"com.mantra.rdservice", "com.scl.rdservice", "com.acpl.registersdk","com.secugen.rdservice","com.tatvik.bio.tmf20","com.precision.pb510.rdservice"};
+        String[] strArr = {"Mantra","Mantra L1","Mantra IRIS", "Morpho","Morpho (IDEMIA) L1", "Startek", "SecuGen", "Tatvik", "Precision","Precision (PB1000) L1","Aratek A600","Evolute"};
+        String[] strArr3 = {"com.mantra.rdservice",
+                "com.mantra.mfs110.rdservice",
+                "com.mantra.mis100v2.rdservice",
+                "com.scl.rdservice",
+                "com.idemia.l1rdservice",
+                "com.acpl.registersdk",
+                "com.secugen.rdservice",
+                "com.tatvik.bio.tmf20",
+                "com.precision.pb510.rdservice",
+                "in.co.precisionit.innaitaadhaar",
+                "co.aratek.asix_gms.rdservice",
+                "com.evolute.rdservice"};
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ArrayList arrayList = new ArrayList();
@@ -598,7 +608,7 @@ public class VerifyAgent extends AppCompatActivity implements LocationListener {
             devicesItems.setId(sb.toString());
             devicesItems.setName(strArr[i]);
             devicesItems.setPackage_name(strArr3[i]);
-            devicesItems.setType(strArr2[i]);
+            devicesItems.setType("");
             devicesItems.setFragment_type("with");
             arrayList.add(devicesItems);
             deviceCardAdapter.notifyDataSetChanged();
