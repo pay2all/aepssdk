@@ -10,6 +10,7 @@ import com.pay2all.aeps.AEPSICICI.AadhaarPay;
 import com.pay2all.aeps.AEPSICICI.BalaneEnquiry;
 import com.pay2all.aeps.AEPSICICI.MiniStatement;
 import com.pay2all.aeps.AEPSICICI.Withdrawal;
+import com.pay2all.aeps.InsuranceDetails.Insurance;
 import com.pay2all.aeps.aepsnew.AEPSNewService;
 import com.pay2all.aeps.AgentVerifyDetail.VerifyAgent;
 import com.pay2all.aeps.Reports.TransactionReports;
@@ -126,6 +127,10 @@ public class AEPS_Service extends AppCompatActivity {
         else if (Constants.service_id.equalsIgnoreCase("ap3"))
         {
            intent= mCallNewAEPS("175","Aadhaar Pay");
+        }
+        else if (Constants.service_id.equalsIgnoreCase("ins"))
+        {
+            intent=new Intent(AEPS_Service.this, Insurance.class);
         }
 
         startActivityForResult(intent,INTENTCODE);

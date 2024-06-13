@@ -107,6 +107,10 @@
             android:name=".AgentVerifyDetail.VerifyAgent"
             android:label="2 Factor Authentication" />
         <activity android:name=".aepsnew.AEPSNewService" />
+
+        <activity android:name=".InsuranceDetails.Insurance"
+            android:label="Insurance"
+            />
     </application>
 
 </manifest>
