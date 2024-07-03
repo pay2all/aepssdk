@@ -151,6 +151,7 @@
                             android:textColor="@color/colorPrimary"
                             android:textStyle="bold"
                             />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -171,6 +172,20 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"/>
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_merchant_verify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="Merchant Verify"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:textSize="18sp"
+                        android:visibility="gone"
+                        />
 
                     <LinearLayout
                         android:orientation="horizontal"

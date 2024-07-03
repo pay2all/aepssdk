@@ -66,11 +66,11 @@ public class AgentVerificationBottomSheet3DialogFragment extends BottomSheetDial
         bt_verify_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), VerifyAgent.class);
-                if (activity_name.equals("aadhaar")) {
-                    intent.putExtra("aadhaar_verify","1");
-                }
-                startActivity(intent);
+//                Intent intent=new Intent(getActivity(), VerifyAgent.class);
+//                if (activity_name.equals("aadhaar")) {
+//                    intent.putExtra("aadhaar_verify","1");
+//                }
+//                startActivity(intent);
             }
         });
 

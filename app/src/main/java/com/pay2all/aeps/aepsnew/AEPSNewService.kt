@@ -3,6 +3,7 @@ package com.pay2all.aeps.aepsnew
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,6 +13,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
@@ -53,8 +55,21 @@ import com.pay2all.aeps.DetectConnection
 import com.pay2all.aeps.MyLocation
 import com.pay2all.aeps.R
 import com.pay2all.aeps.UTLsData
+import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.IOException
+import java.io.UnsupportedEncodingException
+import java.security.InvalidKeyException
+import java.security.NoSuchAlgorithmException
+import java.security.spec.InvalidParameterSpecException
+import java.util.concurrent.TimeUnit
+import javax.crypto.BadPaddingException
+import javax.crypto.IllegalBlockSizeException
+import javax.crypto.NoSuchPaddingException
 import javax.crypto.SecretKey
 
 class AEPSNewService : AppCompatActivity(),LocationListener {
@@ -126,10 +141,17 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
     lateinit var button_re_capture: Button
     lateinit var button_submit: Button
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_aepsnew_service)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        dbHelper = DBHelper(this)
+
+        secretKey = UTLsData.generateKey(this.dbHelper.mGet());
+
 
         textinputlayout_amount=findViewById(R.id.textinputlayout_amount)
         edittext_amount=findViewById(R.id.edittext_amount)
@@ -147,9 +169,9 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
         button_submit=findViewById(R.id.button_submit)
         button_re_capture=findViewById(R.id.button_re_capture)
 
+
         viewModelFactory= AEPSViewModelFactory(BuildConfig.BASEURL)
         viewModel=ViewModelProvider(this@AEPSNewService,viewModelFactory).get(AEPSViewModel::class.java)
-        dbHelper = DBHelper(this)
         dialog=CustomeProgressBar(this@AEPSNewService)
 
         if (intent.hasExtra("type"))
@@ -166,7 +188,7 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
                 if (provider_id.equals("175")||provider_id.equals("158"))
                 {
                     textinputlayout_amount.visibility=View.VISIBLE
-                    mOpenVerifyFragment()
+//                    mOpenVerifyFragment()
                 }
                 else
                 {
@@ -691,29 +713,31 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
                                     this.sessionKey = jSONObject4.getString(str11)
                                 }
                             }
-                            if (this.errCode == "0") {
-                                this.ll_fingerprint.setVisibility(View.VISIBLE)
-                                this.imageview_finger_print.setColorFilter(
-                                    resources.getColor(
-                                        R.color.green
+
+
+                                if (this.errCode == "0") {
+                                    this.ll_fingerprint.setVisibility(View.VISIBLE)
+                                    this.imageview_finger_print.setColorFilter(
+                                        resources.getColor(
+                                            R.color.green
+                                        )
                                     )
-                                )
-                                this.action = "submit"
-                                this.button_submit.setText(resources.getString(R.string.proceed_now))
-                                this.button_re_capture.setVisibility(View.VISIBLE)
-                                val sb2 = java.lang.StringBuilder()
-                                sb2.append("Capture Score ")
-                                sb2.append(this.qScore)
-                                sb2.append(" %")
-                                textview_capture_quality.text = sb2.toString()
-                            }
-                            else {
-                                this.action = "scan"
-                                this.ll_fingerprint.setVisibility(View.GONE)
-                                this.button_re_capture.setVisibility(View.GONE)
-                                this.button_submit.setText(resources.getString(R.string.capture_fingerprint))
-                                Toast.makeText(this, this.errInfo, Toast.LENGTH_SHORT).show()
-                            }
+                                    this.action = "submit"
+                                    this.button_submit.setText(resources.getString(R.string.proceed_now))
+                                    this.button_re_capture.setVisibility(View.VISIBLE)
+                                    val sb2 = java.lang.StringBuilder()
+                                    sb2.append("Capture Score ")
+                                    sb2.append(this.qScore)
+                                    sb2.append(" %")
+                                    textview_capture_quality.text = sb2.toString()
+                                } else {
+                                    this.action = "scan"
+                                    this.ll_fingerprint.setVisibility(View.GONE)
+                                    this.button_re_capture.setVisibility(View.GONE)
+                                    this.button_submit.setText(resources.getString(R.string.capture_fingerprint))
+                                    Toast.makeText(this, this.errInfo, Toast.LENGTH_SHORT).show()
+                                }
+
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()
@@ -725,6 +749,49 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
                     }
                 }
             }
+        }
+    }
+
+    private fun mPrepairMerchantData() {
+        try {
+            val jsonObject = JSONObject()
+            jsonObject.put("outlet_id", Constants.outlet_id)
+            jsonObject.put("mobile_number", Constants.mobile)
+            jsonObject.put("aadhar_number", Constants.aadhaar)
+            //                    jsonObject.put("payment_id", "3")
+            jsonObject.put("payment_id", "9")
+            jsonObject.put("amount", "0")
+            jsonObject.put("provider_id", provider_id)
+            jsonObject.put("biometric_data", biometricdata)
+            jsonObject.put("lat", lat.toString() + "")
+            jsonObject.put("long", log.toString() + "")
+
+            try {
+                Log.e("sending", "data $jsonObject")
+                val data = mEncodByteToStringBase64(UTLsData.encryptMsg(jsonObject.toString(), secretKey))
+
+                if (data != null) {
+                    mOkkHttps(data)
+                }
+
+                //                                    mGetOrderId(data);
+            } catch (e: NoSuchAlgorithmException) {
+                e.printStackTrace()
+            } catch (e: NoSuchPaddingException) {
+                e.printStackTrace()
+            } catch (e: InvalidKeyException) {
+                e.printStackTrace()
+            } catch (e: InvalidParameterSpecException) {
+                e.printStackTrace()
+            } catch (e: IllegalBlockSizeException) {
+                e.printStackTrace()
+            } catch (e: BadPaddingException) {
+                e.printStackTrace()
+            } catch (e: UnsupportedEncodingException) {
+                e.printStackTrace()
+            }
+        } catch (e: JSONException) {
+            e.printStackTrace()
         }
     }
 
@@ -868,5 +935,92 @@ class AEPSNewService : AppCompatActivity(),LocationListener {
         else {
             Log.e("location", "Not found")
         }
+    }
+
+
+    protected fun mOkkHttps(json_data: String) {
+        class DatNewSubmit : AsyncTask<String?, String?, String?>() {
+            public override fun onPreExecute() {
+                super.onPreExecute()
+
+               dialog?.mShowDialog()
+            }
+
+            protected override fun doInBackground(vararg p0: String?): String? {
+                var response_data: String? = null
+                try {
+                    val client = OkHttpClient().newBuilder()
+
+                        .connectTimeout(10, TimeUnit.SECONDS)
+                        .writeTimeout(10, TimeUnit.SECONDS)
+                        .readTimeout(30, TimeUnit.SECONDS)
+
+                        .build()
+
+                    val body: RequestBody = MultipartBody.Builder().setType(MultipartBody.FORM) //                            .setType(Objects.requireNonNull(mediaType))
+
+                            .addFormDataPart("json_data", json_data)
+                            .addFormDataPart("biometric_data", biometricdata)
+                            .build()
+                    val request: Request =
+                        Request.Builder()
+                            .url(BuildConfig.BASEURL + "api/outlet/v1/outletapi")
+                            .method("POST", body)
+                            .addHeader("Content-Type", "application/json; charset=utf-8")
+                            .addHeader("Accept", "application/json")
+                            .build()
+                    val response = client.newCall(request).execute()
+
+                    response_data = response.body!!.string()
+
+                    Log.e("respon", "respos " + response.message)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    response_data = e.message
+                }
+
+                return response_data
+            }
+
+            override fun onPostExecute(result: String?) {
+                super.onPostExecute(result)
+                dialog?.mDismissDialog()
+                Log.e("response", "data $result")
+
+                if (result != "") {
+//                    Intent intent=new Intent(VerifyAgent.this, Receipt.class);
+//                    intent.putExtra("data",result);
+//                    startActivity(intent);
+//                    finish();
+//                    Toast.makeText(VerifyAgent.this, result, Toast.LENGTH_SHORT).show();
+
+                    var status = ""
+                    var message = ""
+                    try {
+                        val jsonObject = JSONObject(result)
+                        if (jsonObject.has("status_id")) {
+                            status = jsonObject.getString("status_id")
+                        }
+                        if (jsonObject.has("message")) {
+                            message = jsonObject.getString("message")
+                        }
+
+                        if (status.equals("1")||status.equals("true"))
+                        {
+                            biometricdata=""
+
+                            if (!message.equals(""))
+                            {
+                                mShowToast(message)
+                            }
+                        }
+                    }
+                    catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
+        DatNewSubmit().execute()
     }
 }
