@@ -60,7 +60,7 @@ public class AEPS_Service extends AppCompatActivity {
 
         }
         else{
-            if (Constants.mobile.equals("")|| Constants.outlet_id.equals("")|| Constants.service_id.equals("")|| Constants.name.equals(""))
+            if (Constants.mobile.equals("")|| /*Constants.outlet_id.equals("")||*/ Constants.service_id.equals("")|| Constants.name.equals(""))
             {
                 Intent i=new Intent();
                 i.putExtra("status","2");
